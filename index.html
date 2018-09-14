@@ -1,0 +1,60 @@
+<html>
+
+<head>
+    <title>WYSIWYG Editor</title>
+    <script src="js.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <style>
+        .cursor {
+            border-left-width: 1px;
+            border-left-style: solid;
+            border-left-color: blue;
+        }
+    </style>
+</head>
+
+<body onLoad="iframe()">
+    <div class="cursors">
+        <div class="cursor" style="left: 40px; top: 40px; height: 22px; color:red">
+            &nbsp;
+        </div>
+    </div>
+
+    <h2 style="font-family: arial;">WYSIWYG Editor</h2>
+
+    <form method="post" action="submit.php" id="rtf">
+
+        <input type="button" value="B" onclick="bold()">
+        <input type="button" value="I" onclick="italic()">
+        <input type="button" value="U" onclick="underline()">
+        <input type="button" value="Size" onclick="fontsize()">
+        <input type="button" value="Color" onclick="fontcolor()">
+        <input type="button" value="Highlight" onclick="highlight()">
+        <input type="button" value="Link" onclick="link()">
+        <input type="button" value="Unlink" onclick="unlink()">
+        <br><br>
+        <textarea name="textarea" id="textarea" style="display: none;"></textarea>
+        <iframe name="editor" id="editor" style="width: 500; height: 400;"></iframe>
+
+        <br><br>
+        <input type="button" onclick="formsubmit()" value="Post">
+    </form>
+    <script>
+        var show = false;
+        setInterval(() => {
+            $(".cursors").css("visibility", show ? "hidden" : "visible");
+            show = !show;
+        }, 500);
+
+        document.addEventListener('keydown', function (event) {
+            if (event.keyCode == 37) {
+                alert('Left was pressed');
+            }
+            else if (event.keyCode == 39) {
+                alert('Right was pressed');
+            }
+        });
+    </script>
+</body>
+
+</html>
